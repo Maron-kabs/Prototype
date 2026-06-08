@@ -1,0 +1,387 @@
+:root {
+    --bg-main: #0b0f19;
+    --bg-card: #151c2c;
+    --border-color: #222d45;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-green: #10b981;
+    --accent-glow: rgba(16, 185, 129, 0.15);
+    --sidebar-width: 260px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    user-select: none;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Multi-window Application Layout */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    margin-bottom: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    border-left: 4px solid var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.05);
+    color: var(--accent-green);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.streak-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    padding: 12px;
+    border-radius: 14px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+}
+
+/* Main Display Viewport */
+.content-viewport {
+    margin-left: var(--sidebar-width);
+    flex-grow: 1;
+    padding: 40px 50px;
+}
+
+/* View Management (Hiding / Showing Views) */
+.view-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.view-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+    margin-bottom: 35px;
+}
+
+.view-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+/* Cards UI Architecture */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+/* Dashboard Component Grid */
+.dashboard-grid, .journal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 30px;
+}
+
+/* Progress Ring Design */
+.main-progress-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.progress-ring-container {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--bg-card) 79%, transparent 80% 100%),
+                conic-gradient(var(--accent-green) 0%, var(--border-color) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    transition: background 0.3s ease;
+}
+
+.progress-box {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* Modern Checklists */
+.prayer-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.prayer-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background-color: rgba(255,255,255,0.01);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.prayer-row:hover {
+    border-color: #3b4f74;
+    background-color: rgba(255,255,255,0.03);
+}
+
+.prayer-row input[type="checkbox"] {
+    display: none;
+}
+
+.custom-indicator {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prayer-row input:checked + .custom-indicator {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.prayer-row input:checked + .custom-indicator::after {
+    content: "✓";
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Action Buttons */
+.btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-green);
+    color: white;
+}
+
+.btn-primary:disabled {
+    background-color: var(--border-color);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: #2d3b59;
+}
+
+/* Journal Entry Fields */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.mood-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.mood-btn {
+    padding: 12px;
+    background-color: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.mood-btn:hover, .mood-btn.selected {
+    background-color: var(--border-color);
+    border-color: var(--text-secondary);
+}
+
+.mood-btn.selected {
+    border-color: var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    resize: none;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: var(--accent-green);
+}
+
+/* Journal Feed Displays */
+.feed-container {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.empty-state {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 40px 0;
+    font-style: italic;
+}
+
+.log-item {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.log-mood {
+    background: var(--border-color);
+    padding: 2px 8px;
+    border-radius: 20px;
+    color: white;
+}
+
+/* Analytics Mock Git Grid */
+.mock-grid {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.grid-square {
+    aspect-ratio: 1;
+    background-color: var(--border-color);
+    border-radius: 4px;
+}
+
+.grid-square.active {
+    background-color: var(--accent-green);
+    box-shadow: 0 0 8px var(--accent-glow);
+}

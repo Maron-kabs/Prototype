@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sajdah | Premium Habit Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-moon"></i> <span>Sajdah</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item active" data-target="dashboard-view">
+                    <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-target="journal-view">
+                    <i class="fa-solid fa-book-open"></i> <span>Journal</span>
+                </li>
+                <li class="nav-item" data-target="analytics-view">
+                    <i class="fa-solid fa-chart-simple"></i> <span>Analytics</span>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="streak-pill">
+                    <i class="fa-solid fa-fire"></i> <span id="streak-count">0</span> Days
+                </div>
+            </div>
+        </nav>
+
+        <main class="content-viewport">
+            
+            <section id="dashboard-view" class="view-section active">
+                <div class="view-header">
+                    <h2>Welcome Back</h2>
+                    <p class="subtitle">Stay consistent, protect your peace.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card main-progress-card">
+                        <h3>Today's Completion</h3>
+                        <div class="progress-ring-container">
+                            <div class="progress-box">
+                                <span id="progress-text">0%</span>
+                            </div>
+                        </div>
+                        <p id="progress-summary">0 of 5 completed</p>
+                    </div>
+
+                    <div class="card checklist-card">
+                        <h3>Daily Routine</h3>
+                        <div class="prayer-checklist">
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="fajr">
+                                <div class="custom-indicator"></div>
+                                <span class="prayer-name">Fajr (Dawn)</span>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="dhuhr">
+                                <div class="custom-indicator"></div>
+                                <span class="prayer-name">Dhuhr (Midday)</span>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="asr">
+                                <div class="custom-indicator"></div>
+                                <span class="prayer-name">Asr (Afternoon)</span>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="maghrib">
+                                <div class="custom-indicator"></div>
+                                <span class="prayer-name">Maghrib (Sunset)</span>
+                            </label>
+                            <label class="prayer-row">
+                                <input type="checkbox" class="prayer-checkbox" data-id="isha">
+                                <div class="custom-indicator"></div>
+                                <span class="prayer-name">Isha (Night)</span>
+                            </label>
+                        </div>
+                        <button id="submit-day-btn" class="btn-primary" disabled>
+                            <i class="fa-solid fa-circle-check"></i> Lock In Today
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="journal-view" class="view-section">
+                <div class="view-header">
+                    <h2>Spiritual Journal</h2>
+                    <p class="subtitle">Write notes, gratitude logs, or reflections below.</p>
+                </div>
+
+                <div class="journal-grid">
+                    <div class="card journal-form-card">
+                        <h3>Reflection Log</h3>
+                        <div class="form-group">
+                            <label>How did you feel today?</label>
+                            <div class="mood-selector">
+                                <button class="mood-btn" data-mood="Peaceful">🤲 Peaceful</button>
+                                <button class="mood-btn" data-mood="Grateful">🌿 Grateful</button>
+                                <button class="mood-btn" data-mood="Distracted">⏳ Distracted</button>
+                                <button class="mood-btn" data-mood="Tired">⚡ Tired</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="journal-notes">Daily Notes / Reflections</label>
+                            <textarea id="journal-notes" placeholder="What's on your mind? Write a Dua, a goal, or a reflection on today's focus..."></textarea>
+                        </div>
+                        <button id="save-entry-btn" class="btn-secondary">Save Entry</button>
+                    </div>
+
+                    <div class="card logs-card">
+                        <h3>Past Entries</h3>
+                        <div id="journal-feed" class="feed-container">
+                            <p class="empty-state">No entries logged yet. Write your first reflection above!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="analytics-view" class="view-section">
+                <div class="view-header">
+                    <h2>Performance & Insights</h2>
+                    <p class="subtitle">Visualizing your dedication over time.</p>
+                </div>
+                <div class="card analytics-card">
+                    <h3>Consistency Graph</h3>
+                    <p class="subtitle">Simulated GitHub-style habit history mapping:</p>
+                    <div class="mock-grid" id="history-grid">
+                        </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
